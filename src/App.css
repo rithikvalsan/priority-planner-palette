@@ -10,6 +10,10 @@ body {
   background-color: #F8F9FA;
 }
 
+.dark body {
+  background-color: #121212;
+}
+
 .animate-in {
   animation: fadeIn 0.3s ease-in-out;
 }
@@ -23,4 +27,21 @@ body {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* Black-blue-pastel custom colors */
+:root {
+  --color-blue-primary: #1EAEDB;
+  --color-blue-light: #D3E4FD;
+  --color-dark: #222222;
+  --color-gray: #403E43;
+  --color-light-gray: #F1F0FB;
+}
+
+.dark:root {
+  --color-blue-primary: #33C3F0;
+  --color-blue-light: #0FA0CE;
+  --color-dark: #F1F1F1;
+  --color-gray: #9F9EA1;
+  --color-light-gray: #221F26;
 }

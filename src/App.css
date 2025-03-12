@@ -7,11 +7,11 @@
 }
 
 body {
-  background-color: #121212;
+  background-color: #F8F9FA;
 }
 
 .dark body {
-  background-color: #0A0A0A;
+  background-color: #121212;
 }
 
 .animate-in {
@@ -29,29 +29,19 @@ body {
   }
 }
 
-/* Updated darker blue-black-pastel custom colors */
+/* Black-blue-pastel custom colors */
 :root {
-  --color-blue-primary: #0A2342;
-  --color-blue-light: #0F52BA;
-  --color-dark: #080808;
-  --color-gray: #2C2C34;
-  --color-light-gray: #3A3A40;
-  
-  /* Gradient backgrounds for priorities */
-  --gradient-high: linear-gradient(135deg, #1A1F2C 0%, #0F52BA 100%);
-  --gradient-medium: linear-gradient(135deg, #1A1F2C 0%, #0F52BA 70%);
-  --gradient-low: linear-gradient(135deg, #1A1F2C 0%, #0F52BA 40%);
+  --color-blue-primary: #1EAEDB;
+  --color-blue-light: #D3E4FD;
+  --color-dark: #222222;
+  --color-gray: #403E43;
+  --color-light-gray: #F1F0FB;
 }
 
 .dark:root {
-  --color-blue-primary: #0F52BA;
-  --color-blue-light: #1E90FF;
+  --color-blue-primary: #33C3F0;
+  --color-blue-light: #0FA0CE;
   --color-dark: #F1F1F1;
   --color-gray: #9F9EA1;
   --color-light-gray: #221F26;
-  
-  /* Gradient backgrounds for priorities in dark mode */
-  --gradient-high: linear-gradient(135deg, #0A0A0A 0%, #0F52BA 100%);
-  --gradient-medium: linear-gradient(135deg, #0A0A0A 0%, #0F52BA 70%);
-  --gradient-low: linear-gradient(135deg, #0A0A0A 0%, #0F52BA 40%);
 }

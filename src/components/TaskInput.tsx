@@ -35,20 +35,20 @@ const TaskInput: React.FC<TaskInputProps> = ({ onAddTask }) => {
           value={taskText}
           onChange={(e) => setTaskText(e.target.value)}
           placeholder="Add a new task..."
-          className="flex-1 bg-gray-900 border-gray-800 text-gray-100 placeholder:text-gray-500 focus-visible:ring-blue-700"
+          className="flex-1 border-gray-300 dark:border-gray-700 focus-visible:ring-blue-500"
         />
         <Select value={priority} onValueChange={setPriority}>
-          <SelectTrigger className="w-[120px] bg-gray-900 border-gray-800 text-gray-100 focus-visible:ring-blue-700">
+          <SelectTrigger className="w-[120px] border-gray-300 dark:border-gray-700 focus-visible:ring-blue-500">
             <SelectValue placeholder="Priority" />
           </SelectTrigger>
-          <SelectContent className="bg-gray-900 border-gray-800">
-            <SelectItem value="high" className="text-gray-100 focus:bg-gray-800">High</SelectItem>
-            <SelectItem value="medium" className="text-gray-100 focus:bg-gray-800">Medium</SelectItem>
-            <SelectItem value="low" className="text-gray-100 focus:bg-gray-800">Low</SelectItem>
+          <SelectContent>
+            <SelectItem value="high">High</SelectItem>
+            <SelectItem value="medium">Medium</SelectItem>
+            <SelectItem value="low">Low</SelectItem>
           </SelectContent>
         </Select>
       </div>
-      <Button type="submit" className="w-full bg-blue-800 hover:bg-blue-700 text-white">
+      <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800">
         <PlusCircle className="mr-2 h-4 w-4" />
         Add Task
       </Button>

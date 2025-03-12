@@ -7,7 +7,7 @@
 }
 
 body {
-  background-color: #F8F9FA;
+  background-color: hsl(var(--background));
 }
 
 .animate-in {

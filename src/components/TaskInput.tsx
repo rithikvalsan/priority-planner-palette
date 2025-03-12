@@ -35,10 +35,10 @@ const TaskInput: React.FC<TaskInputProps> = ({ onAddTask }) => {
           value={taskText}
           onChange={(e) => setTaskText(e.target.value)}
           placeholder="Add a new task..."
-          className="flex-1 border-gray-300 dark:border-gray-700 focus-visible:ring-blue-500"
+          className="flex-1"
         />
         <Select value={priority} onValueChange={setPriority}>
-          <SelectTrigger className="w-[120px] border-gray-300 dark:border-gray-700 focus-visible:ring-blue-500">
+          <SelectTrigger className="w-[120px]">
             <SelectValue placeholder="Priority" />
           </SelectTrigger>
           <SelectContent>
@@ -48,7 +48,7 @@ const TaskInput: React.FC<TaskInputProps> = ({ onAddTask }) => {
           </SelectContent>
         </Select>
       </div>
-      <Button type="submit" className="w-full bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800">
+      <Button type="submit" className="w-full bg-purple-500 hover:bg-purple-600">
         <PlusCircle className="mr-2 h-4 w-4" />
         Add Task
       </Button>

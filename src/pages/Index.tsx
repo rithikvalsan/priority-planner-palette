@@ -36,8 +36,8 @@ const Index = () => {
   };
 
   return (
-    <div className="min-w-[300px] max-w-[400px] mx-auto p-5 bg-white dark:bg-gray-900 rounded-lg shadow-lg border border-gray-200 dark:border-gray-800">
-      <h1 className="text-2xl font-bold text-center mb-6 text-blue-600 dark:text-blue-400">Task Manager</h1>
+    <div className="min-w-[300px] max-w-[400px] mx-auto p-5 bg-gray-900 dark:bg-black border border-gray-800 rounded-lg shadow-lg">
+      <h1 className="text-2xl font-bold text-center mb-6 text-blue-500 dark:text-blue-400">Task Manager</h1>
       <TaskInput onAddTask={addTask} />
       <TaskList
         tasks={tasks}

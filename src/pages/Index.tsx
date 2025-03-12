@@ -1,12 +1,49 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React, { useState } from 'react';
+import TaskInput from '@/components/TaskInput';
+import TaskList from '@/components/TaskList';
+
+interface Task {
+  id: string;
+  text: string;
+  priority: string;
+  completed: boolean;
+}
 
 const Index = () => {
+  const [tasks, setTasks] = useState<Task[]>([]);
+
+  const addTask = ({ text, priority }: { text: string; priority: string }) => {
+    const newTask: Task = {
+      id: Date.now().toString(),
+      text,
+      priority,
+      completed: false,
+    };
+    setTasks((prevTasks) => [...prevTasks, newTask]);
+  };
+
+  const toggleTask = (id: string) => {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      )
+    );
+  };
+
+  const deleteTask = (id: string) => {
+    setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="min-w-[300px] max-w-[400px] mx-auto p-4 bg-white rounded-lg shadow">
+      <h1 className="text-2xl font-bold text-center mb-6 text-purple-600">Task Manager</h1>
+      <TaskInput onAddTask={addTask} />
+      <TaskList
+        tasks={tasks}
+        onToggleTask={toggleTask}
+        onDeleteTask={deleteTask}
+      />
     </div>
   );
 };

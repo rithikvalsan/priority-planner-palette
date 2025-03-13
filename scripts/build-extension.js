@@ -3,9 +3,38 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-// Run the Vite build
+// Create dist directory if it doesn't exist
+const distDir = path.join(__dirname, '..', 'dist');
+if (!fs.existsSync(distDir)) {
+  fs.mkdirSync(distDir, { recursive: true });
+}
+
+// Run the Vite build with error handling
 console.log('Building the app...');
-execSync('npm run build', { stdio: 'inherit' });
+try {
+  // Try the standard npm run build first
+  execSync('npm run build', { stdio: 'inherit' });
+} catch (error) {
+  console.log('Standard build failed, trying with npx vite build...');
+  try {
+    // If that fails, try using npx to run vite directly
+    execSync('npx vite build', { stdio: 'inherit' });
+  } catch (innerError) {
+    console.error('Build failed. Please ensure vite is installed.');
+    console.error('Try running: npm install vite --save-dev');
+    process.exit(1);
+  }
+}
+
+// Copy manifest.json to dist folder
+console.log('Copying manifest.json to dist folder...');
+const manifestPath = path.join(__dirname, '..', 'public', 'manifest.json');
+const manifestDestPath = path.join(distDir, 'manifest.json');
+if (fs.existsSync(manifestPath)) {
+  fs.copyFileSync(manifestPath, manifestDestPath);
+} else {
+  console.warn('Warning: manifest.json not found in public folder');
+}
 
 // Create icon placeholder files
 console.log('Creating extension icons...');
@@ -28,11 +57,11 @@ const createIconSVG = (size, color) => {
 // Save icons to the dist directory
 iconSizes.forEach(size => {
   const svgContent = createIconSVG(size, iconColors[size]);
-  fs.writeFileSync(path.join('dist', `icon${size}.svg`), svgContent);
+  fs.writeFileSync(path.join(distDir, `icon${size}.svg`), svgContent);
   
   // For simplicity we're using SVG files directly
   // In a production environment, you might want to convert these to PNG
-  fs.writeFileSync(path.join('dist', `icon${size}.png`), svgContent);
+  fs.writeFileSync(path.join(distDir, `icon${size}.png`), svgContent);
 });
 
 console.log('Extension build complete! The extension is ready in the "dist" folder.');

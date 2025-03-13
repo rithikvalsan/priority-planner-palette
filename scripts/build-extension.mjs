@@ -14,9 +14,34 @@ if (!fs.existsSync(distDir)) {
   fs.mkdirSync(distDir, { recursive: true });
 }
 
+// Check if vite is installed
+console.log('Checking for Vite installation...');
+try {
+  // Try to get vite version to check if it's installed
+  execSync('npx vite --version', { stdio: 'ignore' });
+  console.log('Vite is already installed');
+} catch (error) {
+  console.log('Vite is not installed, installing it now...');
+  try {
+    execSync('npm install vite --save-dev', { stdio: 'inherit' });
+    console.log('Vite installed successfully');
+  } catch (installError) {
+    console.error('Failed to install Vite:', installError.message);
+    process.exit(1);
+  }
+}
+
 // Run the Vite build with error handling
 console.log('Building the app...');
 try {
+  // First check if @vitejs/plugin-react-swc is installed
+  try {
+    execSync('npm list @vitejs/plugin-react-swc', { stdio: 'ignore' });
+  } catch (error) {
+    console.log('@vitejs/plugin-react-swc is not installed, installing it now...');
+    execSync('npm install @vitejs/plugin-react-swc --save-dev', { stdio: 'inherit' });
+  }
+
   // Try the standard npm run build first
   execSync('npm run build', { stdio: 'inherit' });
 } catch (error) {
@@ -25,8 +50,8 @@ try {
     // If that fails, try using npx to run vite directly
     execSync('npx vite build', { stdio: 'inherit' });
   } catch (innerError) {
-    console.error('Build failed. Please ensure vite is installed.');
-    console.error('Try running: npm install vite --save-dev');
+    console.error('Build failed. Please ensure all required dependencies are installed.');
+    console.error('Try running: npm install');
     process.exit(1);
   }
 }

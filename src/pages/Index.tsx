@@ -1,7 +1,8 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import TaskInput from '@/components/TaskInput';
 import TaskList from '@/components/TaskList';
+import { toast } from '@/components/ui/use-toast';
 
 interface Task {
   id: string;
@@ -13,6 +14,37 @@ interface Task {
 const Index = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
 
+  // Load tasks from localStorage when component mounts
+  useEffect(() => {
+    try {
+      const savedTasks = localStorage.getItem('tasks');
+      if (savedTasks) {
+        setTasks(JSON.parse(savedTasks));
+      }
+    } catch (error) {
+      console.error('Error loading tasks from localStorage:', error);
+      toast({
+        title: "Error",
+        description: "Could not load your saved tasks",
+        variant: "destructive",
+      });
+    }
+  }, []);
+
+  // Save tasks to localStorage whenever they change
+  useEffect(() => {
+    try {
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+    } catch (error) {
+      console.error('Error saving tasks to localStorage:', error);
+      toast({
+        title: "Error",
+        description: "Failed to save your tasks",
+        variant: "destructive",
+      });
+    }
+  }, [tasks]);
+
   const addTask = ({ text, priority }: { text: string; priority: string }) => {
     const newTask: Task = {
       id: Date.now().toString(),
@@ -21,6 +53,10 @@ const Index = () => {
       completed: false,
     };
     setTasks((prevTasks) => [...prevTasks, newTask]);
+    toast({
+      title: "Task added",
+      description: "Your task has been added successfully",
+    });
   };
 
   const toggleTask = (id: string) => {
@@ -33,6 +69,10 @@ const Index = () => {
 
   const deleteTask = (id: string) => {
     setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
+    toast({
+      title: "Task deleted",
+      description: "Your task has been removed",
+    });
   };
 
   return (

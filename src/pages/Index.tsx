@@ -77,7 +77,7 @@ const Index = () => {
 
   return (
     <div className="min-w-[300px] max-w-[400px] mx-auto p-4 bg-white dark:bg-slate-900 rounded-lg shadow-md">
-      <h1 className="text-2xl font-bold text-center mb-6 text-[#0A4B94] dark:text-[#1E7AC4]">Task Manager</h1>
+      <h1 className="text-2xl font-bold text-center mb-6 text-[#0A4B94] dark:text-[#1E7AC4]">Add a Task</h1>
       <TaskInput onAddTask={addTask} />
       <TaskList
         tasks={tasks}

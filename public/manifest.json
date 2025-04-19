@@ -7,15 +7,15 @@
   "action": {
     "default_popup": "index.html",
     "default_icon": {
-      "16": "icon16.png",
-      "48": "icon48.png",
-      "128": "icon128.png"
+      "16": "/lovable-uploads/70f47262-850b-4773-a6b0-a753315d507b.png",
+      "48": "/lovable-uploads/e99dcbab-f872-4b93-bea3-1bbb9651f3ae.png",
+      "128": "/lovable-uploads/18efa461-6d76-470b-bb94-d31c3d5ada6a.png"
     }
   },
   "icons": {
-    "16": "icon16.png",
-    "48": "icon48.png",
-    "128": "icon128.png"
+    "16": "/lovable-uploads/70f47262-850b-4773-a6b0-a753315d507b.png",
+    "48": "/lovable-uploads/e99dcbab-f872-4b93-bea3-1bbb9651f3ae.png",
+    "128": "/lovable-uploads/18efa461-6d76-470b-bb94-d31c3d5ada6a.png"
   },
   "permissions": ["storage"],
   "background": {

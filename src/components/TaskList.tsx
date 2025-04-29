@@ -1,8 +1,9 @@
 
 import React from 'react';
 import { Checkbox } from "@/components/ui/checkbox";
-import { Trash2 } from 'lucide-react';
+import { Trash2, Flag, Circle, Star } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Badge } from "@/components/ui/badge";
 
 interface Task {
   id: string;
@@ -31,6 +32,36 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onToggleTask, onDeleteTask }
     }
   };
 
+  const renderPriorityTag = (priority: string) => {
+    let color = "";
+    let icon = null;
+    
+    switch (priority) {
+      case 'high':
+        color = "bg-[#8B5CF6] hover:bg-[#7E69AB]";
+        icon = <Flag className="h-3 w-3 mr-1" />;
+        break;
+      case 'medium':
+        color = "bg-[#0EA5E9] hover:bg-[#0EA5E9]/90";
+        icon = <Star className="h-3 w-3 mr-1" />;
+        break;
+      case 'low':
+        color = "bg-slate-500 hover:bg-slate-600";
+        icon = <Circle className="h-3 w-3 mr-1" />;
+        break;
+      default:
+        color = "bg-gray-500";
+        icon = <Circle className="h-3 w-3 mr-1" />;
+    }
+    
+    return (
+      <Badge className={`${color} ml-2 flex items-center text-xs`}>
+        {icon}
+        {priority}
+      </Badge>
+    );
+  };
+
   return (
     <div className="space-y-2">
       {tasks.map((task) => (
@@ -41,22 +72,25 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onToggleTask, onDeleteTask }
             getPriorityColor(task.priority)
           )}
         >
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 flex-1">
             <Checkbox
               checked={task.completed}
               onCheckedChange={() => onToggleTask(task.id)}
               className="border-blue-500 data-[state=checked]:bg-blue-600"
             />
-            <span className={cn(
-              "transition-all",
-              task.completed && "line-through text-slate-500 dark:text-slate-400"
-            )}>
-              {task.text}
-            </span>
+            <div className="flex items-center flex-wrap">
+              <span className={cn(
+                "transition-all",
+                task.completed && "line-through text-slate-500 dark:text-slate-400"
+              )}>
+                {task.text}
+              </span>
+              {renderPriorityTag(task.priority)}
+            </div>
           </div>
           <button
             onClick={() => onDeleteTask(task.id)}
-            className="text-slate-500 hover:text-red-500 transition-colors"
+            className="text-slate-500 hover:text-red-500 transition-colors ml-2"
           >
             <Trash2 size={18} />
           </button>

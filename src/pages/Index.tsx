@@ -91,16 +91,16 @@ const Index = () => {
     setSelectedPriority(value === "all" ? null : value);
   };
 
-  const renderPriorityIcon = (priority: string) => {
+  const getPriorityColor = (priority: string) => {
     switch (priority) {
       case 'high':
-        return <Flag className="h-3.5 w-3.5 text-[#ea384c]" />;
+        return "text-[#ea384c]";
       case 'medium':
-        return <Circle className="h-3.5 w-3.5 text-[#1EAEDB]" />;
+        return "text-[#1EAEDB]";
       case 'low':
-        return <Circle className="h-3.5 w-3.5 text-[#D3E4FD] text-blue-800" />;
+        return "text-[#D3E4FD] dark:text-blue-300";
       default:
-        return null;
+        return "text-gray-700 dark:text-gray-300";
     }
   };
 
@@ -112,21 +112,33 @@ const Index = () => {
       <div className="my-4">
         <Tabs defaultValue="all" onValueChange={handleTabChange} className="w-full">
           <TabsList className="w-full grid grid-cols-4">
-            <TabsTrigger value="all" className="text-xs">
+            <TabsTrigger 
+              value="all" 
+              className={`font-medium text-xs ${selectedPriority === null ? "bg-slate-200 dark:bg-slate-700" : ""}`}
+            >
               All
-              <Badge className="ml-1 bg-gray-200 text-gray-700 text-xs">{tasks.length}</Badge>
+              <Badge className="ml-1 bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300 text-xs">{tasks.length}</Badge>
             </TabsTrigger>
-            <TabsTrigger value="high" className="text-xs">
-              {renderPriorityIcon('high')}
-              <Badge className="ml-1 bg-gray-200 text-gray-700 text-xs">{getTaskCountByPriority('high')}</Badge>
+            <TabsTrigger 
+              value="high" 
+              className={`font-medium text-xs ${selectedPriority === 'high' ? "bg-red-100 dark:bg-red-900/30" : ""} ${getPriorityColor('high')}`}
+            >
+              High
+              <Badge className="ml-1 bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300 text-xs">{getTaskCountByPriority('high')}</Badge>
             </TabsTrigger>
-            <TabsTrigger value="medium" className="text-xs">
-              {renderPriorityIcon('medium')}
-              <Badge className="ml-1 bg-gray-200 text-gray-700 text-xs">{getTaskCountByPriority('medium')}</Badge>
+            <TabsTrigger 
+              value="medium" 
+              className={`font-medium text-xs ${selectedPriority === 'medium' ? "bg-blue-100 dark:bg-blue-900/30" : ""} ${getPriorityColor('medium')}`}
+            >
+              Medium
+              <Badge className="ml-1 bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300 text-xs">{getTaskCountByPriority('medium')}</Badge>
             </TabsTrigger>
-            <TabsTrigger value="low" className="text-xs">
-              {renderPriorityIcon('low')}
-              <Badge className="ml-1 bg-gray-200 text-gray-700 text-xs">{getTaskCountByPriority('low')}</Badge>
+            <TabsTrigger 
+              value="low" 
+              className={`font-medium text-xs ${selectedPriority === 'low' ? "bg-slate-100 dark:bg-slate-800" : ""} ${getPriorityColor('low')}`}
+            >
+              Low
+              <Badge className="ml-1 bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300 text-xs">{getTaskCountByPriority('low')}</Badge>
             </TabsTrigger>
           </TabsList>
         </Tabs>

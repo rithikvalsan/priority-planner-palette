@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Checkbox } from "@/components/ui/checkbox";
-import { Trash2, Flag, Circle, Star } from 'lucide-react';
+import { Trash2, Flag, Circle } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Badge } from "@/components/ui/badge";
 
@@ -35,29 +35,33 @@ const TaskList: React.FC<TaskListProps> = ({ tasks, onToggleTask, onDeleteTask }
   const renderPriorityTag = (priority: string) => {
     let color = "";
     let icon = null;
+    let tooltipText = "";
     
     switch (priority) {
       case 'high':
-        color = "bg-[#8B5CF6] hover:bg-[#7E69AB]";
-        icon = <Flag className="h-3 w-3 mr-1" />;
+        color = "bg-[#ea384c] hover:bg-[#ea384c]/90";
+        icon = <Flag className="h-3.5 w-3.5" />;
+        tooltipText = "High Priority";
         break;
       case 'medium':
-        color = "bg-[#0EA5E9] hover:bg-[#0EA5E9]/90";
-        icon = <Star className="h-3 w-3 mr-1" />;
+        color = "bg-[#1EAEDB] hover:bg-[#1EAEDB]/90";
+        icon = <Circle className="h-3.5 w-3.5" />;
+        tooltipText = "Medium Priority";
         break;
       case 'low':
-        color = "bg-slate-500 hover:bg-slate-600";
-        icon = <Circle className="h-3 w-3 mr-1" />;
+        color = "bg-[#D3E4FD] hover:bg-[#D3E4FD]/90 text-blue-800";
+        icon = <Circle className="h-3.5 w-3.5" />;
+        tooltipText = "Low Priority";
         break;
       default:
         color = "bg-gray-500";
-        icon = <Circle className="h-3 w-3 mr-1" />;
+        icon = <Circle className="h-3.5 w-3.5" />;
+        tooltipText = "Priority";
     }
     
     return (
-      <Badge className={`${color} ml-2 flex items-center text-xs`}>
+      <Badge className={`${color} ml-2 flex items-center justify-center w-6 h-6 p-0 rounded-full`} title={tooltipText}>
         {icon}
-        {priority}
       </Badge>
     );
   };

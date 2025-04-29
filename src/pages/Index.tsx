@@ -114,28 +114,28 @@ const Index = () => {
           <TabsList className="w-full grid grid-cols-4">
             <TabsTrigger 
               value="all" 
-              className={`font-medium text-xs ${selectedPriority === null ? "bg-slate-200 dark:bg-slate-700" : ""}`}
+              className={`font-medium text-xs ${selectedPriority === null ? "bg-slate-200 dark:bg-slate-700 shadow-inner font-bold" : ""}`}
             >
               All
               <Badge className="ml-1 bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300 text-xs">{tasks.length}</Badge>
             </TabsTrigger>
             <TabsTrigger 
               value="high" 
-              className={`font-medium text-xs ${selectedPriority === 'high' ? "bg-red-100 dark:bg-red-900/30" : ""} ${getPriorityColor('high')}`}
+              className={`font-medium text-xs ${selectedPriority === 'high' ? "bg-red-200 dark:bg-red-900/50 shadow-inner font-bold" : ""} ${getPriorityColor('high')}`}
             >
               High
               <Badge className="ml-1 bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300 text-xs">{getTaskCountByPriority('high')}</Badge>
             </TabsTrigger>
             <TabsTrigger 
               value="medium" 
-              className={`font-medium text-xs ${selectedPriority === 'medium' ? "bg-blue-100 dark:bg-blue-900/30" : ""} ${getPriorityColor('medium')}`}
+              className={`font-medium text-xs ${selectedPriority === 'medium' ? "bg-blue-200 dark:bg-blue-900/50 shadow-inner font-bold" : ""} ${getPriorityColor('medium')}`}
             >
               Medium
               <Badge className="ml-1 bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300 text-xs">{getTaskCountByPriority('medium')}</Badge>
             </TabsTrigger>
             <TabsTrigger 
               value="low" 
-              className={`font-medium text-xs ${selectedPriority === 'low' ? "bg-slate-100 dark:bg-slate-800" : ""} ${getPriorityColor('low')}`}
+              className={`font-medium text-xs ${selectedPriority === 'low' ? "bg-slate-200 dark:bg-slate-800/90 shadow-inner font-bold" : ""} ${getPriorityColor('low')}`}
             >
               Low
               <Badge className="ml-1 bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300 text-xs">{getTaskCountByPriority('low')}</Badge>

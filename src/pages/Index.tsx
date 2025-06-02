@@ -104,6 +104,24 @@ const Index = () => {
     }
   };
 
+  const getSelectedTabStyle = (priority: string | null, currentTab: string) => {
+    if (selectedPriority === currentTab || (selectedPriority === null && currentTab === 'all')) {
+      switch (currentTab) {
+        case 'all':
+          return "bg-gray-600 text-white dark:bg-gray-700";
+        case 'high':
+          return "bg-red-600 text-white dark:bg-red-800";
+        case 'medium':
+          return "bg-blue-600 text-white dark:bg-blue-800";
+        case 'low':
+          return "bg-slate-600 text-white dark:bg-slate-700";
+        default:
+          return "";
+      }
+    }
+    return "";
+  };
+
   return (
     <div className="min-w-[300px] max-w-[400px] mx-auto p-4 bg-white dark:bg-slate-900 rounded-lg shadow-md">
       <h1 className="text-2xl font-bold text-center mb-6 text-[#0A4B94] dark:text-[#1E7AC4]">Add a Task</h1>
@@ -114,28 +132,28 @@ const Index = () => {
           <TabsList className="w-full grid grid-cols-4">
             <TabsTrigger 
               value="all" 
-              className={`font-medium text-xs ${selectedPriority === null ? "bg-slate-200 dark:bg-slate-700 shadow-inner font-bold" : ""}`}
+              className={`font-medium text-xs ${getSelectedTabStyle(selectedPriority, 'all')}`}
             >
               All
               <Badge className="ml-1 bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300 text-xs">{tasks.length}</Badge>
             </TabsTrigger>
             <TabsTrigger 
               value="high" 
-              className={`font-medium text-xs ${selectedPriority === 'high' ? "bg-red-200 dark:bg-red-900/50 shadow-inner font-bold" : ""} ${getPriorityColor('high')}`}
+              className={`font-medium text-xs ${getSelectedTabStyle(selectedPriority, 'high')} ${selectedPriority !== 'high' ? getPriorityColor('high') : ''}`}
             >
               High
               <Badge className="ml-1 bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300 text-xs">{getTaskCountByPriority('high')}</Badge>
             </TabsTrigger>
             <TabsTrigger 
               value="medium" 
-              className={`font-medium text-xs ${selectedPriority === 'medium' ? "bg-blue-200 dark:bg-blue-900/50 shadow-inner font-bold" : ""} ${getPriorityColor('medium')}`}
+              className={`font-medium text-xs ${getSelectedTabStyle(selectedPriority, 'medium')} ${selectedPriority !== 'medium' ? getPriorityColor('medium') : ''}`}
             >
               Medium
               <Badge className="ml-1 bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300 text-xs">{getTaskCountByPriority('medium')}</Badge>
             </TabsTrigger>
             <TabsTrigger 
               value="low" 
-              className={`font-medium text-xs ${selectedPriority === 'low' ? "bg-slate-200 dark:bg-slate-800/90 shadow-inner font-bold" : ""} ${getPriorityColor('low')}`}
+              className={`font-medium text-xs ${getSelectedTabStyle(selectedPriority, 'low')} ${selectedPriority !== 'low' ? getPriorityColor('low') : ''}`}
             >
               Low
               <Badge className="ml-1 bg-gray-200 text-gray-700 dark:bg-gray-700 dark:text-gray-300 text-xs">{getTaskCountByPriority('low')}</Badge>

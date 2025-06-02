@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import TaskInput from '@/components/TaskInput';
 import TaskList from '@/components/TaskList';
@@ -57,10 +56,6 @@ const Index = () => {
       completed: false,
     };
     setTasks((prevTasks) => [...prevTasks, newTask]);
-    toast({
-      title: "Task added",
-      description: "Your task has been added successfully",
-    });
   };
 
   const toggleTask = (id: string) => {
